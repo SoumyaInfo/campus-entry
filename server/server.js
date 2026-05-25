@@ -5,19 +5,28 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 
+dotenv.config();
+
+const app = express();
+
 const __filename =
   fileURLToPath(import.meta.url);
 
 const __dirname =
   path.dirname(__filename);
 
-dotenv.config();
+// Middleware
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
-const app = express();
-
-app.use(cors());
 app.use(express.json());
 
+/* -------------------------
+   MAIL API
+------------------------- */
 app.post("/send-mail", async (req, res) => {
   const {
     name,
@@ -32,20 +41,27 @@ app.post("/send-mail", async (req, res) => {
       nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS,
+          user:
+            process.env.EMAIL_USER,
+          pass:
+            process.env.EMAIL_PASS,
         },
       });
 
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from:
+        process.env.EMAIL_USER,
 
-      to: process.env.EMAIL_USER,
+      to:
+        process.env.EMAIL_USER,
 
-      // Convert comma-separated emails into array
-      cc: process.env.CC_MAILS?.split(","),
+      cc:
+        process.env.CC_MAILS?.split(
+          ","
+        ),
 
-      subject: "New Campus Entry Enquiry",
+      subject:
+        "New Campus Entry Enquiry",
 
       text: `
 Name: ${name}
@@ -58,38 +74,62 @@ Message: ${message}
 
     res.status(200).json({
       success: true,
+      message:
+        "Mail sent successfully",
     });
 
   } catch (error) {
 
-    console.error(error);
+    console.error(
+      "Mail Error:",
+      error
+    );
 
     res.status(500).json({
       success: false,
-      error: "Mail failed",
+      error:
+        "Mail failed",
     });
   }
 });
 
-app.use(
-  express.static(
-    path.join(
-      __dirname,
-      "../dist"
-    )
-  )
-);
-
-app.get(/.*/, (req, res) => {
-  res.sendFile(
-    path.join(
-      __dirname,
-      "../dist",
-      "index.html"
-    )
+/* -------------------------
+   TEST ROUTE
+------------------------- */
+app.get("/test", (req, res) => {
+  res.send(
+    "Backend Running"
   );
 });
 
+/* -------------------------
+   SERVE REACT BUILD
+------------------------- */
+const distPath =
+  path.join(
+    __dirname,
+    "../dist"
+  );
+
+app.use(
+  express.static(distPath)
+);
+
+app.get(
+  /^\/(?!api).*/,
+  (req, res) => {
+    res.sendFile(
+      path.join(
+        distPath,
+        "index.html"
+      )
+    );
+  }
+);
+
+/* -------------------------
+   START SERVER
+------------------------- */
 const PORT =
   process.env.PORT || 5000;
 
