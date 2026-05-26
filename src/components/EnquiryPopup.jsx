@@ -50,20 +50,19 @@ const EnquiryPopup = () => {
     setLoading(true);
 
     try {
-      const response =
-        await fetch(
-          "/send-mail",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type":
-                "application/json",
-            },
-            body: JSON.stringify(
-              formData
-            ),
-          }
-        );
+   const response = await fetch(
+  "/.netlify/functions/send-mail",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type":
+        "application/json",
+    },
+    body: JSON.stringify(
+      formData
+    ),
+  }
+);
 
       if (response.ok) {
 
@@ -208,9 +207,9 @@ const EnquiryPopup = () => {
                   </button>
 
                   {/* Phone */}
-                  <div className="flex items-center justify-center text-[#2F5D34] font-medium text-sm pt-1">
+                  {/* <div className="flex items-center justify-center text-[#2F5D34] font-medium text-sm pt-1">
                     📞 +91 8884243678
-                  </div>
+                  </div> */}
 
                 </form>
               </>

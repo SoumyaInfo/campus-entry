@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import EnquiryPopup from "../components/EnquiryPopup";
+import { useState } from "react";
 
 const Home = () => {
+
+const [showBrochure, setShowBrochure] = useState(false);
   return (
     <main className="bg-[#F8FBF6] min-h-screen text-[#1F2937]">
       <EnquiryPopup />
@@ -40,16 +43,61 @@ const Home = () => {
   </Link>
 
   {/* Download Brochure */}
-  <a
-    href="/brochure.png"
-    download="Campus-Entry-Brochure"
-    className="bg-[#C9DB37] text-[#2F5D34]
-    font-semibold px-6 py-3 rounded-lg
-    hover:scale-105 transition-all duration-200
-    shadow-sm flex items-center gap-2"
-  >
-    📥 Download Brochure
-  </a>
+{/* Download Brochure Button */}
+<button
+  onClick={() => setShowBrochure(true)}
+  className="bg-[#C9DB37] text-[#2F5D34]
+  font-semibold px-6 py-3 rounded-lg
+  hover:scale-105 transition-all duration-200
+  shadow-sm flex items-center gap-2"
+>
+  📥 Download Brochure
+</button>
+
+{/* Brochure Popup */}
+{showBrochure && (
+  <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl relative overflow-hidden">
+
+      {/* Close Button */}
+      <button
+        onClick={() => setShowBrochure(false)}
+        className="absolute top-4 right-4 text-2xl font-bold text-gray-600 hover:text-black"
+      >
+        ✕
+      </button>
+
+      {/* Heading */}
+      <div className="p-5 border-b">
+        <h2 className="text-2xl font-bold text-[#2F5D34] text-center">
+          Campus Entry Brochure
+        </h2>
+      </div>
+
+      {/* Brochure Preview */}
+      <div className="p-4 flex justify-center bg-gray-50">
+        <img
+          src="/brochure.png"
+          alt="Brochure"
+          className="max-h-[70vh] object-contain rounded-lg shadow-md"
+        />
+      </div>
+
+      {/* Download Button */}
+      <div className="p-5 flex justify-center">
+        <a
+          href="/brochure.png"
+          download="Campus-Entry-Brochure"
+          className="bg-[#C9DB37] text-[#2F5D34]
+          px-6 py-3 rounded-lg font-semibold
+          hover:scale-105 transition-all duration-200"
+        >
+          📥 Download Brochure
+        </a>
+      </div>
+    </div>
+  </div>
+)}
 
 </div>
 
@@ -303,6 +351,13 @@ const Home = () => {
           className="text-[#355E3B] text-sm hover:text-[#2F5D34] transition-colors"
         >
           88842 43678
+        </a>
+       < br/>
+          <a
+          href="tel:8884243678"
+          className="text-[#355E3B] text-sm hover:text-[#2F5D34] transition-colors"
+        >
+          81213 74205
         </a>
 
         <p className="text-[#64748B] text-xs mt-1">
