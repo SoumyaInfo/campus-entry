@@ -139,14 +139,27 @@ const EnquiryPopup = () => {
 
                   {/* Phone */}
                   <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Phone Number"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                    className="w-full py-3 px-4 rounded-xl border border-[#DDE7D8] outline-none focus:border-[#C9DB37] text-sm"
-                  />
+  type="tel"
+  name="phone"
+  placeholder="Phone Number"
+  value={formData.phone}
+  onChange={(e) => {
+    const value =
+      e.target.value
+        .replace(/\D/g, "")
+        .slice(0, 10);
+
+    setFormData({
+      ...formData,
+      phone: value,
+    });
+  }}
+  required
+  pattern="[6-9]{1}[0-9]{9}"
+  title="Please enter a valid 10-digit phone number"
+  maxLength={10}
+  className="w-full py-3 px-4 rounded-xl border border-[#DDE7D8] outline-none focus:border-[#C9DB37] text-sm"
+/>
 
                   {/* Email */}
                   <input
@@ -175,7 +188,7 @@ const EnquiryPopup = () => {
                       Workday Finance
                     </option>
 
-                    <option value="Workday SCM">
+                    <option value="Workday HCM">
                       Workday HCM
                     </option>
                   </select>
