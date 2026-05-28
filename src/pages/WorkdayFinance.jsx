@@ -21,7 +21,7 @@ const WorkdayFinance = () => {
     budgeting, planning, procurement, and reporting through a secure cloud-based platform.
   </p>
 
-  <div className="flex items-center justify-center gap-4 flex-wrap">
+  {/* <div className="flex items-center justify-center gap-4 flex-wrap">
     <a
       href="mailto:campusentry2022@gmail.com"
       className="bg-[#355E3B] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#2F5D34] transition-all duration-200 shadow-sm"
@@ -35,7 +35,7 @@ const WorkdayFinance = () => {
     >
       Schedule Consultation
     </a>
-  </div>
+  </div> */}
 </section>
 
    {/* ABOUT */}
@@ -283,12 +283,12 @@ const WorkdayFinance = () => {
     </p>
 
     <div className="flex items-center justify-center gap-4 flex-wrap">
-      <a
+      {/* <a
         href="mailto:campusentry2022@gmail.com"
         className="bg-[#C7D92F] text-[#355E3B] font-semibold px-6 py-3 rounded-lg hover:bg-[#D7E75A] transition-all duration-200 shadow-sm"
       >
         Get Started
-      </a>
+      </a> */}
 
       <a
         href="tel:8884243678"

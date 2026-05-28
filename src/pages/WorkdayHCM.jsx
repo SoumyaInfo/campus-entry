@@ -401,7 +401,7 @@ const WorkdayHCM = () => {
           and to perform different strategies.
         </p>
 
-        <div className="flex justify-center gap-4 flex-wrap">
+        {/* <div className="flex justify-center gap-4 flex-wrap">
           <a
             href="mailto:campusentry2022@gmail.com"
             className="bg-[#355E3B] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#2F5D34] transition"
@@ -415,7 +415,7 @@ const WorkdayHCM = () => {
           >
             Schedule Consultation
           </a>
-        </div>
+        </div> */}
       </section>
 
       {/* ABOUT */}
@@ -664,19 +664,19 @@ const WorkdayHCM = () => {
 
           <div className="flex flex-wrap justify-center gap-4">
 
-            <a
+            {/* <a
               href="mailto:campusentry2022@gmail.com"
               className="bg-[#C7D92F] text-[#355E3B] font-semibold px-6 py-3 rounded-lg hover:bg-[#dbe962] transition duration-300"
             >
               Get Started
-            </a>
+            </a> */}
 
             <a
-              href="mailto:campusentry2022@gmail.com"
-              className="border border-white text-white font-semibold px-6 py-3 rounded-lg hover:bg-white/10 transition duration-300"
-            >
-              Schedule Consultation
-            </a>
+        href="tel:8884243678"
+        className="border-2 border-white text-white font-semibold px-6 py-3 rounded-lg hover:bg-white/10 transition-all duration-200"
+      >
+        Call: 81213 74205
+      </a>
 
             <Link
               to="/workday-finance"
