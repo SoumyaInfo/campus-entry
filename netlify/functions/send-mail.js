@@ -1,8 +1,23 @@
 const nodemailer =
   require("nodemailer");
 
+  const headers = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+};
+
 exports.handler =
   async (event) => {
+
+
+    if (event.httpMethod === "OPTIONS") {
+  return {
+    statusCode: 200,
+    headers,
+    body: "",
+  };
+}
     // Allow POST only
     if (
       event.httpMethod !==
@@ -10,6 +25,7 @@ exports.handler =
     ) {
       return {
         statusCode: 405,
+        headers,
         body: JSON.stringify({
           error:
             "Method Not Allowed",
@@ -37,6 +53,7 @@ exports.handler =
       ) {
         return {
           statusCode: 400,
+          headers,
           body: JSON.stringify({
             error:
               "Please fill all required fields",
@@ -117,6 +134,7 @@ exports.handler =
 
       return {
         statusCode: 200,
+        headers,
         body: JSON.stringify({
           success: true,
           message:
@@ -133,6 +151,7 @@ exports.handler =
 
       return {
         statusCode: 500,
+        headers,
         body: JSON.stringify({
           success: false,
           error:

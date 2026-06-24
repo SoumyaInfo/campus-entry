@@ -50,9 +50,9 @@ const EnquiryPopup = () => {
     setLoading(true);
 
     try {
-  const response =
+const response =
   await fetch(
-    "/.netlify/functions/send-mail",
+    "https://campus-entry.netlify.app/.netlify/functions/send-mail",
     {
       method: "POST",
       headers: {
